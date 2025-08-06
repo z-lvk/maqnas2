@@ -29,18 +29,16 @@ export default function Dashboard() {
         />
         {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-        {/* person: fixed bottom-left, lowered more on mobile */}
+        {/* person image */}
+        {/* RESPONSIVE CHANGE: Position is now left-4 on mobile and sm:left-14 on larger screens. */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute left-14 -bottom-8 h-full sm:-bottom-2 sm:h-[120%] object-contain z-10"
+          className="absolute -bottom-8 h-full left-4 sm:left-14 sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
         {/* text overlay */}
-        {/* RESPONSIVE CHANGE: The text container is now always pushed to the right with justify-end */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-6 md:p-12 text-white">
-          {/* RESPONSIVE CHANGE: The text block now takes up a portion of the right side on all screen sizes */}
           <div className="w-1/2 sm:w-7/12 md:w-1/2 text-right">
-            {/* RESPONSIVE CHANGE: Adjusted text sizes to fit better on mobile */}
             <h1 className="font-title text-lg sm:text-2xl font-black uppercase tracking-wider drop-shadow-xl">
               Maqnas HH Prince Naif bin Sultan
             </h1>
