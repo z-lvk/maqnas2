@@ -19,25 +19,22 @@ export default function Dashboard() {
 
   return (
     <div className="w-full">
-      {/* HERO SECTION (responsive height) */}
+      {/* HERO SECTION */}
       <div className="relative w-full overflow-hidden h-[50vh] sm:h-[70vh]">
-        {/* background image */}
+        {/* background */}
         <img
           src={backgroundImage}
           alt="Maqnas Background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-
-        {/* gradient overlay */}
+        {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-
-        {/* cut-out subject: fixed bottom-left, lowered on mobile */}
+        {/* person: fixed bottom-left, lowered more on mobile */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute left-14 -bottom-4 h-full sm:-bottom-2 sm:h-[120%] object-contain z-10"
+          className="absolute left-14 -bottom-8 h-full sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
-
         {/* text overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-6 md:p-12 text-white">
           <div className="w-full md:w-1/2 text-right">
