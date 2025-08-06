@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+
+import Header from './components/Header';
+import Dashboard from './pages/Dashboard';
+import Gallery from './pages/Gallery';
+import UploadPage from './pages/UploadPage';
+import AuthPage from './pages/AuthPage';
+
+const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/auth" />;
+};
+
+const UploaderRoute = ({ children }) => {
+  const { user } = useAuth();
+  // ***************************************************************
+  // IMPORTANT: REPLACE THE EMAIL BELOW WITH YOUR UPLOADER'S EMAIL
+  // ***************************************************************
+  const uploaderEmail = 'karimsahib@gmail.com';
+
+  if (!user) {
+    return <Navigate to="/auth" />;
+  }
+
+  return user.email === uploaderEmail ? children : <Navigate to="/" />;
+};
 
 function App() {
+  const { user } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-brand-dark">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/auth" element={user ? <Navigate to="/" /> : <AuthPage />} />
+            <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            {/* Dynamic route for our galleries */}
+            <Route path="/gallery/:categoryName" element={<PrivateRoute><Gallery /></PrivateRoute>} />
+            <Route path="/upload" element={<UploaderRoute><UploadPage /></UploaderRoute>} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
