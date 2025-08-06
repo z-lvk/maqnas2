@@ -5,6 +5,12 @@ import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../lib/supabaseClient';
 import Modal from '../components/Modal';
 
+// ADDED: Helper function to create thumbnail URLs from Supabase Storage
+const getThumbnailUrl = (url) => {
+  // This requests a 400x400 cropped, web-optimized version of the image.
+  return `${url}?width=400&height=400&resize=cover&quality=75`;
+};
+
 const Gallery = () => {
   const { categoryName } = useParams();
   const decodedCategoryName = decodeURIComponent(categoryName || '');
@@ -16,36 +22,24 @@ const Gallery = () => {
   const { media, setMedia, loading, error } = useGallery(decodedCategoryName, sortBy, filterType);
   const { user } = useAuth();
   
-  // ***************************************************************
-  // IMPORTANT: REPLACE THE EMAIL BELOW WITH YOUR UPLOADER'S EMAIL
-  // ***************************************************************
   const uploaderEmail = 'karimsahib@gmail.com'; 
   const isUploader = user?.email === uploaderEmail;
 
-  // IMPLEMENTED: Delete functionality
   const handleDelete = async (itemToDelete) => {
     if (!window.confirm('Are you sure you want to delete this file? This action cannot be undone.')) {
       return;
     }
     try {
-      // 1. Delete the file from Supabase Storage
-      const { error: storageError } = await supabase.storage.from('media').remove([itemToDelete.file_name]);
-      if (storageError) throw storageError;
-
-      // 2. Delete the record from the database table
-      const { error: dbError } = await supabase.from('media_files').delete().eq('id', itemToDelete.id);
-      if (dbError) throw dbError;
-
-      // 3. Update the local state to remove the item from the UI
+      await supabase.storage.from('media').remove([itemToDelete.file_name]);
+      await supabase.from('media_files').delete().eq('id', itemToDelete.id);
       setMedia(media.filter(item => item.id !== itemToDelete.id));
-      setSelectedMedia(null); // Close the modal
+      setSelectedMedia(null);
     } catch (error) {
       console.error('Error deleting media:', error);
       alert('Error deleting file: ' + error.message);
     }
   };
 
-  // IMPLEMENTED: Date formatting
   const formatDate = (dateString) => {
     if (!dateString) return '';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -55,7 +49,6 @@ const Gallery = () => {
     });
   };
 
-  // IMPLEMENTED: Download functionality
   const handleDownload = async (url, filename) => {
     try {
       const response = await fetch(url);
@@ -110,11 +103,16 @@ const Gallery = () => {
             {media.length === 0 ? (
               <div className="text-center p-12"><p className="text-brand-gray">No media found for the selected filter.</p></div>
             ) : (
-              // IMPLEMENTED: Media grid layout
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {media.map((item) => (
                   <div key={item.id} className="group bg-brand-dark-light rounded-lg shadow-lg overflow-hidden cursor-pointer relative aspect-w-1 aspect-h-1" onClick={() => setSelectedMedia(item)}>
-                    <img src={item.file_url} alt={item.caption_en || 'Gallery media'} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    {/* CHANGED: Use getThumbnailUrl for images. Added lazy loading. */}
+                    <img 
+                      src={item.type === 'image' ? getThumbnailUrl(item.file_url) : item.file_url} 
+                      alt={item.caption_en || 'Gallery media'} 
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
                       {item.type === 'video' && (
                         <svg className="h-16 w-16 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" /></svg>
@@ -128,16 +126,11 @@ const Gallery = () => {
         )}
       </div>
       
-      {/* IMPLEMENTED: Modal with full media display and actions */}
       <Modal isOpen={!!selectedMedia} onClose={() => setSelectedMedia(null)}>
         {selectedMedia && (
           <div className="flex flex-col h-full">
             <div className="flex-grow flex items-center justify-center">
-              {selectedMedia.type === 'image' ? (
-                <img src={selectedMedia.file_url} alt={selectedMedia.caption_en || ''} className="max-w-full max-h-[70vh] object-contain" />
-              ) : (
-                <video src={selectedMedia.file_url} controls autoPlay className="max-w-full max-h-[70vh] object-contain">Your browser does not support the video tag.</video>
-              )}
+              <img src={selectedMedia.file_url} alt={selectedMedia.caption_en || ''} className="max-w-full max-h-[70vh] object-contain" />
             </div>
             <div className="flex-shrink-0 p-4 text-white">
               <p className="font-sans font-bold">{selectedMedia.caption_en}</p>
