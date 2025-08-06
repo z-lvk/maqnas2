@@ -19,26 +19,29 @@ export default function Dashboard() {
 
   return (
     <div className="w-full">
-      {/* HERO SECTION (smaller on mobile) */}
+      {/* HERO SECTION (responsive height) */}
       <div className="relative w-full overflow-hidden h-[50vh] sm:h-[70vh]">
-        {/* background */}
+        {/* background image */}
         <img
           src={backgroundImage}
           alt="Maqnas Background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* gradient */}
+
+        {/* gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-        {/* person: full height on mobile, scaled on larger */}
+
+        {/* cut-out subject: fixed bottom-left, lowered on mobile */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute left-14 bottom--2 h-full sm:h-[120%] object-contain z-10"
+          className="absolute left-14 -bottom-4 h-full sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
+
         {/* text overlay */}
-        <div className="absolute inset-0 z-20 flex items-center justify-end p-6 text-white">
+        <div className="absolute inset-0 z-20 flex items-center justify-end p-6 md:p-12 text-white">
           <div className="w-full md:w-1/2 text-right">
-            <h1 className="font-title text-2xl font-black uppercase drop-shadow-xl">
+            <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
               Maqnas HH Prince Naif bin Sultan
             </h1>
             <div className="w-1/3 my-4 border-b-2 border-white ml-auto" />
