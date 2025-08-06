@@ -8,8 +8,8 @@ import personImage from '../assets/person.png';
 
 const categories = [
   { ar: 'مقناص محمية المرزوم', en: 'Marzoom Reserve Maqnas' },
-  { ar: 'مقناص منقوليا', en: 'Mongolia Maqnas' },
-  { ar: 'مقناص تلال العين', en: 'Al Ain Hills Maqnas' }
+  { ar: 'مقناص منقوليا',       en: 'Mongolia Maqnas' },
+  { ar: 'مقناص تلال العين',     en: 'Al Ain Hills Maqnas' }
 ];
 
 export default function Dashboard() {
@@ -29,32 +29,30 @@ export default function Dashboard() {
         />
         {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-        
-        {/* person image */}
-        {/* RESPONSIVE CHANGE: Smaller size and different position on mobile, scales up on larger screens. */}
+        {/* person: fixed bottom-left, lowered more on mobile */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute -bottom-10 left-4 h-[80%] sm:left-14 sm:-bottom-4 sm:h-[110%] object-contain z-10"
+          className="absolute left-14 -bottom-8 h-full sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
-        
         {/* text overlay */}
-        {/* RESPONSIVE CHANGE: Text container is now centered on mobile and justifies right on medium screens and up. */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center md:justify-end p-6 md:p-12 text-white">
-          <div className="w-full md:w-1/2 text-center md:text-right"> {/* RESPONSIVE CHANGE: Text is centered on mobile */}
-            <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
+        {/* RESPONSIVE CHANGE: The text container is now always pushed to the right with justify-end */}
+        <div className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-6 md:p-12 text-white">
+          {/* RESPONSIVE CHANGE: The text block now takes up a portion of the right side on all screen sizes */}
+          <div className="w-1/2 sm:w-7/12 md:w-1/2 text-right">
+            {/* RESPONSIVE CHANGE: Adjusted text sizes to fit better on mobile */}
+            <h1 className="font-title text-lg sm:text-2xl font-black uppercase tracking-wider drop-shadow-xl">
               Maqnas HH Prince Naif bin Sultan
             </h1>
-            {/* RESPONSIVE CHANGE: Separator line is centered on mobile */}
-            <div className="w-1/3 my-4 border-b-2 border-white mx-auto md:ml-auto md:mr-0" />
-            <h2 className="font-titleArabic text-2xl font-bold" dir="rtl">
+            <div className="w-1/2 my-2 sm:my-4 border-b-2 border-white ml-auto" />
+            <h2 className="font-titleArabic text-xl sm:text-2xl font-bold" dir="rtl">
               مقناص سمو الأمير نايف بن سلطان
             </h2>
           </div>
         </div>
       </div>
 
-      {/* CATEGORY LINKS (This section is already responsive) */}
+      {/* CATEGORY LINKS */}
       <div className="container mx-auto p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {categories.map(cat => (
           <Link
@@ -70,7 +68,7 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* UPLOAD BUTTON (This section is already responsive) */}
+      {/* UPLOAD BUTTON (uploader only) */}
       {isUploader && (
         <div className="container mx-auto p-8 text-center">
           <Link
