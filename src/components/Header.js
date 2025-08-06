@@ -3,9 +3,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { supabase } from '../lib/supabaseClient';
 
-// ADDED: Import your logo file.
-// Make sure the filename 'logo.png' matches the actual name of your file.
-import logo from '../assets/logo.png'; 
+// REMOVED: The logo import is no longer needed.
 
 const Header = () => {
   const { user } = useAuth();
@@ -25,12 +23,13 @@ const Header = () => {
   }
 
   return (
+    // REVERTED: Header is back to its original simple state
     <header className="bg-brand-dark-light shadow-md sticky top-0 z-40">
       <nav className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         <div>
-          {/* CHANGED: Replaced text with the logo image */}
-          <NavLink to="/">
-            <img src={logo} alt="PhotoGallery Logo" className="h-70 w-auto" />
+          {/* REVERTED: The NavLink now contains text instead of an image */}
+          <NavLink to="/" className="text-2xl font-bold text-white font-title">
+            ZK TECHNOLOGY
           </NavLink>
         </div>
         <div className="flex space-x-4 sm:space-x-6 items-center text-sm sm:text-base text-gray-300">
