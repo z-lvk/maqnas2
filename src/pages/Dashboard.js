@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-// Make sure these two files exist in src/assets:
 import backgroundImage from '../assets/background.jpg';
 import personImage     from '../assets/person.png';
 
@@ -20,26 +19,26 @@ export default function Dashboard() {
 
   return (
     <div className="w-full">
-      {/* ===== HERO SECTION ===== */}
+      {/* HERO SECTION */}
       <div className="relative h-[70vh] w-full overflow-hidden">
-        {/* 1) Full-cover background */}
+        {/* Background */}
         <img
           src={backgroundImage}
           alt="Maqnas Background"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        {/* 2) Gradient overlay */}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
 
-        {/* 3) Person on the left (fixed on all screens) */}
+        {/* Person: fixed bottom-left, constant size */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute left-4 bottom-0 w-[45%] sm:w-[35%] md:w-[30%] object-contain z-10"
+          className="absolute left-14 -bottom-2 h-[120%] object-contain z-10"
         />
 
-        {/* 4) Text on the right */}
+        {/* Text Overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-8 md:p-12 text-white">
           <div className="w-full md:w-1/2 text-right">
             <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
@@ -52,9 +51,8 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      {/* ===== end HERO ===== */}
 
-      {/* ===== CATEGORY LINKS ===== */}
+      {/* CATEGORY LINKS */}
       <div className="container mx-auto p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {categories.map(cat => (
           <Link
@@ -70,7 +68,7 @@ export default function Dashboard() {
         ))}
       </div>
 
-      {/* ===== UPLOAD BUTTON (uploader only) ===== */}
+      {/* UPLOAD BUTTON (uploader only) */}
       {isUploader && (
         <div className="container mx-auto p-8 text-center">
           <Link
