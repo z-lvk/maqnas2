@@ -30,11 +30,11 @@ export default function Dashboard() {
         {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
         {/* person image */}
-        {/* RESPONSIVE CHANGE: Position is now left-4 on mobile and sm:left-14 on larger screens. */}
+        {/* RESPONSIVE CHANGE: Moved further left (left-0) and further down (-bottom-12) on mobile. */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute -bottom-8 h-full left-4 sm:left-14 sm:-bottom-2 sm:h-[120%] object-contain z-10"
+          className="absolute -bottom-12 h-[95%] left-0 sm:left-14 sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
         {/* text overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-6 md:p-12 text-white">
