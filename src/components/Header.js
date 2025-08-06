@@ -30,7 +30,7 @@ const Header = () => {
         <div>
           {/* CHANGED: Replaced text with the logo image */}
           <NavLink to="/">
-            <img src={logo} alt="PhotoGallery Logo" className="h-12 w-auto" />
+            <img src={logo} alt="PhotoGallery Logo" className="h-20 w-auto" />
           </NavLink>
         </div>
         <div className="flex space-x-4 sm:space-x-6 items-center text-sm sm:text-base text-gray-300">
