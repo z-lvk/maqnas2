@@ -19,33 +19,30 @@ export default function Dashboard() {
 
   return (
     <div className="w-full">
-      {/* HERO SECTION */}
-      <div className="relative h-[70vh] w-full overflow-hidden">
-        {/* Background */}
+      {/* HERO SECTION (smaller on mobile) */}
+      <div className="relative w-full overflow-hidden h-[50vh] sm:h-[70vh]">
+        {/* background */}
         <img
           src={backgroundImage}
           alt="Maqnas Background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-
-        {/* Gradient Overlay */}
+        {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-
-        {/* Person: fixed bottom-left, constant size */}
+        {/* person: full height on mobile, scaled on larger */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute left-14 -bottom-2 h-[120%] object-contain z-10"
+          className="absolute left-14 bottom--2 h-full sm:h-[120%] object-contain z-10"
         />
-
-        {/* Text Overlay */}
-        <div className="absolute inset-0 z-20 flex items-center justify-end p-8 md:p-12 text-white">
+        {/* text overlay */}
+        <div className="absolute inset-0 z-20 flex items-center justify-end p-6 text-white">
           <div className="w-full md:w-1/2 text-right">
-            <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
+            <h1 className="font-title text-2xl font-black uppercase drop-shadow-xl">
               Maqnas HH Prince Naif bin Sultan
             </h1>
-            <div className="w-1/3 my-6 border-b-2 border-white ml-auto" />
-            <h2 className="font-titleArabic text-3xl font-bold" dir="rtl">
+            <div className="w-1/3 my-4 border-b-2 border-white ml-auto" />
+            <h2 className="font-titleArabic text-2xl font-bold" dir="rtl">
               مقناص سمو الأمير نايف بن سلطان
             </h2>
           </div>
@@ -73,7 +70,7 @@ export default function Dashboard() {
         <div className="container mx-auto p-8 text-center">
           <Link
             to="/upload"
-            className="inline-block px-8 py-4 bg-navy-light rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-white font-title text-lg"
+            className="inline-block px-8 py-4 bg-navy-light rounded-xl shadow-lg hover:shadow-2xl transition-all text-white font-title text-lg"
           >
             Upload Media
           </Link>
