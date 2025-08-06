@@ -42,12 +42,12 @@ export default function Dashboard() {
         {/* 4) Text on the right */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-8 md:p-12 text-white">
           <div className="w-full md:w-1/2 text-right">
-            <h1 className="font-title text-2xl md:text-4xl font-black uppercase tracking-wider drop-shadow-xl">
-              Maqnas HH Prince Naif bin Sultan bin Mohammed bin Saud Al Kabeer
+            <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
+              Maqnas HH Prince Naif bin Sultan 
             </h1>
             <div className="w-1/3 my-6 border-b-2 border-white ml-auto" />
-            <h2 className="font-titleArabic text-3xl md:text-5xl font-bold" dir="rtl">
-              مقناص سمو الأمير نايف بن سلطان بن محمد بن سعود الكبير
+            <h2 className="font-titleArabic text-3xl font-bold" dir="rtl">
+            مقناص سمو الأمير نايف بن سلطان 
             </h2>
           </div>
         </div>
