@@ -29,25 +29,43 @@ export default function Dashboard() {
         />
         {/* gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-black/60" />
-        {/* person image */}
-        {/* FINAL CHANGE: Using !left-0 to force position and md: for a wider mobile breakpoint. */}
+        
+        {/* person image (This is the version with the correct responsive positioning) */}
         <img
           src={personImage}
           alt="Subject"
-          className="absolute bottom-0 h-[95%] w-auto object-contain z-10 !left-0 md:left-14 md:-bottom-5 md:h-[120%]"
+          className="absolute -bottom-12 h-[95%] left-0 sm:left-14 sm:-bottom-2 sm:h-[120%] object-contain z-10"
         />
-        {/* text overlay */}
-        <div className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-6 md:p-12 text-white">
-          <div className="w-1/2 sm:w-7/12 md:w-1/2 text-right">
-            <h1 className="font-title text-lg sm:text-2xl font-black uppercase tracking-wider drop-shadow-xl">
+
+        {/* --- START OF TEXT LAYOUT CHANGES --- */}
+
+        {/* Layout for MOBILE screens (top-left and top-right) */}
+        <div className="absolute inset-0 z-20 flex justify-between items-start p-4 text-white md:hidden">
+          <div className="w-1/2 text-left">
+            <h1 className="font-title text-lg font-black uppercase tracking-wider drop-shadow-lg">
               Maqnas HH Prince Naif bin Sultan
             </h1>
-            <div className="w-1/2 my-2 sm:my-4 border-b-2 border-white ml-auto" />
-            <h2 className="font-titleArabic text-xl sm:text-2xl font-bold" dir="rtl">
+          </div>
+          <div className="w-1/2 text-right">
+            <h2 className="font-titleArabic text-xl font-bold" dir="rtl">
               مقناص سمو الأمير نايف بن سلطان
             </h2>
           </div>
         </div>
+
+        {/* Layout for DESKTOP screens (original layout) */}
+        <div className="hidden md:flex absolute inset-0 z-20 items-center justify-end p-6 md:p-12 text-white">
+          <div className="w-full md:w-1/2 text-right">
+            <h1 className="font-title text-2xl font-black uppercase tracking-wider drop-shadow-xl">
+              Maqnas HH Prince Naif bin Sultan
+            </h1>
+            <div className="w-1/3 my-4 border-b-2 border-white ml-auto" />
+            <h2 className="font-titleArabic text-2xl font-bold" dir="rtl">
+              مقناص سمو الأمير نايف بن سلطان
+            </h2>
+          </div>
+        </div>
+        {/* --- END OF TEXT LAYOUT CHANGES --- */}
       </div>
 
       {/* CATEGORY LINKS */}
