@@ -34,7 +34,7 @@ export default function Dashboard() {
         <img
           src={personImage}
           alt="Subject"
-          className="absolute -bottom-12 left-0 h-[95%] w-auto object-contain z-10 sm:left-14 sm:-bottom-5 sm:h-[120%] object-contain z-10"
+          className="absolute -bottom-12 left--2 h-[95%] w-auto object-contain z-10 sm:left-14 sm:-bottom-5 sm:h-[120%] object-contain z-10"
         />
         {/* text overlay */}
         <div className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-6 md:p-12 text-white">
