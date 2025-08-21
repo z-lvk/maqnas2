@@ -8,7 +8,7 @@ import personImage from '../assets/person.png';
 
 const categories = [
   { ar: 'مقناص محمية المرزوم', en: 'Marzoom Reserve Maqnas' },
-  { ar: 'مقناص منقوليا',       en: 'Mongolia Maqnas' },
+  { ar: 'مقناص منغوليا',       en: 'Mongolia Maqnas' },
   { ar: 'مقناص تلال العين',     en: 'Al Ain Hills Maqnas' }
 ];
 

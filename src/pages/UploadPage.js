@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 
 const categories = [
   'مقناص محمية المرزوم',
-  'مقناص منقوليا',
+  'مقناص منغوليا',
   'مقناص تلال العين'
 ];
 
